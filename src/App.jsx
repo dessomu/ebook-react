@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { setAuthToken } from "./services/api";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
+import NavBar from "./components/NavBar";
+
+import EbookList from "./pages/EbookList";
+import EbookDetails from "./pages/EbookDetails";
+
+import AdminUpload from "./pages/AdminUpload";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminRoute from "./components/AdminRoute";
+
+export default function App() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) setAuthToken(token);
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <NavBar />
 
-export default App
+      <Routes>
+        {/* PUBLIC */}
+        <Route path="/" element={<EbookList />} />
+        <Route path="/ebook/:id" element={<EbookDetails />} />
+
+        {/* ADMIN */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/upload"
+          element={
+            <AdminRoute>
+              <AdminUpload />
+            </AdminRoute>
+          }
+        />
+
+        {/* AUTH PAGES */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </>
+  );
+}
