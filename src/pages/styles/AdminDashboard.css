@@ -1,0 +1,140 @@
+.admin-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  height: 100vh;
+}
+
+.admin-title {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  color: var(--color-dark);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.admin-add-btn {
+  padding: 10px 22px;
+  background: var(--color-brown);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.admin-add-btn:hover {
+  background: var(--color-dark);
+}
+
+/* List layout */
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-item {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: var(--color-cream);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  align-items: flex-start;
+  transition: 0.25s ease;
+}
+
+.admin-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+.admin-cover {
+  width: 90px;
+  height: 130px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Content section */
+.admin-info {
+  flex: 1;
+}
+
+.admin-book-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+
+.admin-price {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-brown);
+  margin-bottom: 6px;
+}
+
+.admin-desc {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Action Buttons */
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-btn-edit,
+.admin-btn-delete {
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.admin-btn-edit {
+  background: var(--color-brown);
+  color: white;
+}
+
+.admin-btn-edit:hover {
+  background: var(--color-dark);
+}
+
+.admin-btn-delete {
+  background: #b30000;
+  color: white;
+}
+
+.admin-btn-delete:hover {
+  background: #7a0000;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .admin-item {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .admin-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../../services/api";
+import "./styles/EditEbook.css";
 
 export default function EditEbook() {
   const { id } = useParams();
@@ -48,42 +49,70 @@ export default function EditEbook() {
   if (!ebook) return <p>Loading...</p>;
 
   return (
-    <div style={{ maxWidth: "600px", margin: "30px auto" }}>
-      <h2>Edit Ebook</h2>
+    <div className="edit-container">
+      <div className="edit-card">
+        <form onSubmit={handleSubmit} className="edit-form">
+          <div className="edit-grid">
+            <div>
+              <label className="edit-label">Title</label>
+              <input
+                className="edit-input"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
 
-      <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+            <div>
+              <label className="edit-label">Price (₹)</label>
+              <input
+                className="edit-input"
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+          </div>
 
-        <label>Description</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+          <label className="edit-label">Description</label>
+          <textarea
+            className="edit-textarea"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-        <label>Price (₹)</label>
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
+          {/* Cover preview */}
+          {ebook?.coverUrl && (
+            <div className="edit-preview-section">
+              <p className="edit-preview-label">Current Cover:</p>
+              <img
+                src={ebook.coverUrl}
+                alt="Current Cover"
+                className="edit-current-cover"
+              />
+            </div>
+          )}
 
-        <label>Replace PDF</label>
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={(e) => setPdfFile(e.target.files[0])}
-        />
+          <label className="edit-label">Replace PDF</label>
+          <input
+            className="edit-file"
+            type="file"
+            accept="application/pdf"
+            onChange={(e) => setPdfFile(e.target.files[0])}
+          />
 
-        <label>Replace Cover</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setCoverFile(e.target.files[0])}
-        />
+          <label className="edit-label">Replace Cover</label>
+          <input
+            className="edit-file"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setCoverFile(e.target.files[0])}
+          />
 
-        <button type="submit">Save Changes</button>
-      </form>
+          <button type="submit" className="edit-btn">
+            Save Changes
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

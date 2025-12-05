@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import API from "../services/api";
 import CheckoutButton from "../components/CheckoutButton";
+import "./styles/EbookDetails.css";
 
 export default function EbookDetails() {
   const { id } = useParams();
@@ -63,19 +64,38 @@ export default function EbookDetails() {
   if (!ebook) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>{ebook.title}</h2>
-      {ebook.coverUrl && <img src={ebook.coverUrl} height={180} />}
-      <p>{ebook.description}</p>
-      <p>Price: ₹{ebook.price}</p>
+    <div className="details-container">
+      <div className="details-wrapper">
+        <div className="cover-section">
+          {ebook.coverUrl && (
+            <img
+              className="details-cover"
+              src={ebook.coverUrl}
+              alt={ebook.title}
+            />
+          )}
+        </div>
 
-      {checking ? (
-        <p>Checking purchase status...</p>
-      ) : purchased ? (
-        <button onClick={getDownload}>Download Ebook</button>
-      ) : role === "user" ? (
-        <CheckoutButton ebook={ebook} onSuccess={checkPurchaseStatus} />
-      ) : null}
+        <div className="info-section">
+          <h2 className="details-title">{ebook.title}</h2>
+
+          <p className="details-description">{ebook.description}</p>
+
+          <p className="details-price">₹{ebook.price}</p>
+
+          <div className="details-actions">
+            {checking ? (
+              <p className="checking-status">Checking purchase status...</p>
+            ) : purchased ? (
+              <button className="details-btn" onClick={getDownload}>
+                Download Ebook
+              </button>
+            ) : role === "user" ? (
+              <CheckoutButton ebook={ebook} onSuccess={checkPurchaseStatus} />
+            ) : null}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

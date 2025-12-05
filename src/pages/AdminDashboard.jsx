@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../services/api";
 import { Link } from "react-router-dom";
+import "./styles/AdminDashboard.css";
 
 export default function AdminDashboard() {
   const [ebooks, setEbooks] = useState([]);
@@ -34,42 +35,45 @@ export default function AdminDashboard() {
   if (loading) return <div>Loading dashboard...</div>;
 
   return (
-    <div style={{ maxWidth: 800, margin: "30px auto" }}>
-      <h2>📘 Admin Dashboard</h2>
+    <div className="admin-container">
+      <div className="admin-header">
+        <Link to="/admin/upload" className="admin-add-btn">
+          + Add New Ebook
+        </Link>
+      </div>
 
-      <Link to="/admin/upload">
-        <button>Add New Ebook</button>
-      </Link>
-
-      <div style={{ marginTop: 20 }}>
+      <div className="admin-list">
         {ebooks.map((book) => (
-          <div
-            key={book._id}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: 20,
-              borderBottom: "1px solid #ddd",
-              paddingBottom: 10,
-            }}
-          >
-            {book.coverUrl && <img src={book.coverUrl} height={80} />}
-            <div style={{ marginLeft: 20, flexGrow: 1 }}>
-              <h3>{book.title}</h3>
-              <p>₹{book.price}</p>
-              <p>{book.description}</p>
+          <div className="admin-item" key={book._id}>
+            {book.coverUrl && (
+              <img
+                src={book.coverUrl}
+                alt={book.title}
+                className="admin-cover"
+              />
+            )}
+
+            <div className="admin-info">
+              <h3 className="admin-book-title">{book.title}</h3>
+              <p className="admin-price">₹{book.price}</p>
+              <p className="admin-desc">{book.description}</p>
             </div>
 
-            <button
-              style={{ marginRight: 10 }}
-              onClick={() => deleteEbook(book._id)}
-            >
-              Delete
-            </button>
+            <div className="admin-actions">
+              <button
+                className="admin-btn-delete"
+                onClick={() => deleteEbook(book._id)}
+              >
+                Delete
+              </button>
 
-            <Link to={`/admin/ebook/${book._id}/edit`}>
-              <button>Edit</button>
-            </Link>
+              <Link
+                to={`/admin/ebook/${book._id}/edit`}
+                className="admin-btn-edit"
+              >
+                Edit
+              </Link>
+            </div>
           </div>
         ))}
       </div>

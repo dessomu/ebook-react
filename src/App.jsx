@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { setAuthToken } from "./services/api";
+import "./App.css";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";

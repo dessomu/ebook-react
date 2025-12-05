@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../services/api";
+import "./styles/MyLibrary.css";
 
 export default function MyLibrary() {
   const [items, setItems] = useState([]);
@@ -46,49 +47,50 @@ export default function MyLibrary() {
   if (loading) return <p>Loading library...</p>;
 
   return (
-    <div style={{ maxWidth: "700px", margin: "20px auto" }}>
-      <h2>📚 My Library</h2>
-
+    <div className="library-container">
       {items.length === 0 ? (
-        <p>You haven’t purchased any ebooks yet.</p>
+        <p className="library-empty">You haven’t purchased any ebooks yet.</p>
       ) : items.every((p) => p.deleted) ? (
-        <p>
+        <p className="library-empty">
           Your library is empty. All ebooks you purchased were removed by admin.
         </p>
       ) : (
-        items.map((p) => (
-          <div
-            key={p._id}
-            style={{
-              display: "flex",
-              gap: "20px",
-              marginBottom: "20px",
-              borderBottom: "1px solid #ddd",
-              paddingBottom: "15px",
-            }}
-          >
-            {p.deleted ? (
-              <div>
-                <h3>📕 Deleted Ebook</h3>
-                <p>This ebook is no longer available.</p>
-              </div>
-            ) : (
-              <>
-                {p.ebook.coverUrl && (
-                  <img src={p.ebook.coverUrl} height="100" width="80" />
-                )}
-
-                <div style={{ flex: 1 }}>
-                  <h3>{p.ebook.title}</h3>
-                  <p>{p.ebook.description}</p>
-                  <button onClick={() => downloadBook(p.ebook)}>
-                    Download
-                  </button>
+        <div className="library-list">
+          {items.map((p) => (
+            <div className="library-item" key={p._id}>
+              {p.deleted ? (
+                <div className="deleted-wrapper">
+                  <h3 className="deleted-title">📕 Deleted Ebook</h3>
+                  <p className="deleted-message">
+                    This ebook is no longer available.
+                  </p>
                 </div>
-              </>
-            )}
-          </div>
-        ))
+              ) : (
+                <>
+                  {p.ebook.coverUrl && (
+                    <img
+                      className="library-cover"
+                      src={p.ebook.coverUrl}
+                      alt={p.ebook.title}
+                    />
+                  )}
+
+                  <div className="library-info">
+                    <h3 className="library-book-title">{p.ebook.title}</h3>
+                    <p className="library-book-desc">{p.ebook.description}</p>
+
+                    <button
+                      className="library-btn"
+                      onClick={() => downloadBook(p.ebook)}
+                    >
+                      Download
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

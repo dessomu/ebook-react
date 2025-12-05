@@ -1,0 +1,115 @@
+.edit-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.edit-card {
+  background: var(--color-cream);
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.edit-title {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Two-column compact layout */
+.edit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.edit-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.edit-input,
+.edit-textarea {
+  width: 100%;
+  padding: 8px 10px;
+  height: 38px;
+  background: #fff;
+  border: 1px solid var(--color-tan);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.25s ease;
+}
+
+.edit-input:focus,
+.edit-textarea:focus {
+  border-color: var(--color-brown);
+}
+
+.edit-textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Preview current cover */
+.edit-preview-section {
+  margin: 18px 0;
+}
+
+.edit-preview-label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--color-dark);
+}
+
+.edit-current-cover {
+  width: 140px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* File inputs */
+.edit-file {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Submit button */
+.edit-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--color-brown);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.edit-btn:hover {
+  background: var(--color-dark);
+  transform: translateY(-2px);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .edit-grid {
+    grid-template-columns: 1fr;
+  }
+  .edit-title {
+    font-size: 26px;
+  }
+  .edit-preview-section {
+    display: none;
+  }
+}

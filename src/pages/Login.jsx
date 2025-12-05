@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import API, { setAuthToken } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import "./styles/Login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -26,24 +27,32 @@ export default function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "50px auto" }}>
-      <h2>Login</h2>
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <h2 className="auth-title">Welcome Back</h2>
 
-      <label>Email</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <label className="auth-label">Email</label>
+        <input
+          type="email"
+          className="auth-input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@example.com"
+        />
 
-      <label>Password</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <label className="auth-label">Password</label>
+        <input
+          type="password"
+          className="auth-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="********"
+        />
 
-      <button onClick={handleLogin}>Login</button>
+        <button className="auth-btn" onClick={handleLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }

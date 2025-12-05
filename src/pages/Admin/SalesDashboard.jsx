@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
 import API from "../../services/api";
+import "./styles/SalesDshboard.css";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function SalesDashboard() {
   const [stats, setStats] = useState(null);

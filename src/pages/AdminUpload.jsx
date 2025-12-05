@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../services/api";
 import useDebounce from "../hooks/useDebounce";
+import "./styles/AdminUpload.css";
 
 export default function AdminUpload() {
   const [pdf, setPdf] = useState(null);
@@ -65,55 +66,81 @@ export default function AdminUpload() {
   }, [debouncedProductId]);
 
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto" }}>
-      <h2>📚 Upload New Ebook</h2>
+    <div className="upload-container">
+      <div className="upload-card">
+        <div className="upload-grid">
+          <div>
+            <label className="upload-label">Title</label>
+            <input
+              className="upload-input"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Ebook name"
+            />
+          </div>
 
-      <label>Title</label>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <div>
+            <label className="upload-label">Price (₹)</label>
+            <input
+              className="upload-input"
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="199"
+            />
+          </div>
 
-      <label>Price (₹)</label>
-      <input
-        type="number"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
+          <div>
+            <label className="upload-label">Product ID</label>
+            <input
+              className="upload-input"
+              type="text"
+              placeholder="productId"
+              value={productId}
+              onChange={(e) => setProductId(e.target.value)}
+              onBlur={() => checkProductId(productId)}
+            />
+          </div>
 
-      <label>Product Id</label>
-      <input
-        type="text"
-        placeholder="productId"
-        value={productId}
-        onBlur={() => checkProductId(productId)}
-        onChange={(e) => {
-          setProductId(e.target.value);
-        }}
-      />
+          <div>
+            <label className="upload-label">PDF File</label>
+            <input
+              className="upload-file"
+              type="file"
+              accept="application/pdf"
+              onChange={(e) => setPdf(e.target.files[0])}
+            />
+          </div>
 
-      <label>Description</label>
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+          <div>
+            <label className="upload-label">Cover Image (optional)</label>
+            <input
+              className="upload-file"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setCover(e.target.files[0])}
+            />
+          </div>
+        </div>
 
-      <label>PDF File</label>
-      <input
-        type="file"
-        accept="application/pdf"
-        onChange={(e) => setPdf(e.target.files[0])}
-      />
+        <label className="upload-label">Description</label>
+        <textarea
+          className="upload-textarea"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Short description about the ebook"
+        />
 
-      <label>Cover Image (optional)</label>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setCover(e.target.files[0])}
-      />
+        <button
+          className="upload-btn"
+          disabled={loading}
+          onClick={handleUpload}
+        >
+          {loading ? "Uploading..." : "Upload Ebook"}
+        </button>
 
-      <button disabled={loading} onClick={handleUpload}>
-        {loading ? "Uploading..." : "Upload Ebook"}
-      </button>
-
-      {message && <p>{message}</p>}
+        {message && <p className="upload-message">{message}</p>}
+      </div>
     </div>
   );
 }

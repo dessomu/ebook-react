@@ -1,0 +1,144 @@
+.nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 32px;
+  background: linear-gradient(180deg, #fffefe 0%, #e9e2d8 100%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+
+/* Left section */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Navigation links */
+.nav-link {
+  font-size: 1rem; /* increased */
+  font-weight: 600; /* heavier */
+  text-decoration: none;
+  color: var(--color-dark);
+  padding: 8px 4px; /* taller hit area */
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-brown);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  background: var(--color-brown);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Right section */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Buttons */
+.nav-btn,
+.nav-btn:link,
+.nav-btn:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px; /* increased for match */
+  background: var(--color-brown);
+  border-radius: var(--radius);
+  color: #fff;
+  font-size: 0.9rem; /* visually balanced */
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: 0.25s ease;
+  height: 37.5px; /* matched height */
+}
+
+.nav-btn:hover {
+  background: var(--color-dark);
+  transform: translateY(-2px);
+}
+
+.nav-btn-outline {
+  padding: 8px 16px;
+  border: 2px solid var(--color-brown);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-brown);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-btn-outline:hover {
+  background: var(--color-brown);
+  color: #fff;
+}
+
+/* remove underline animation on buttons */
+.nav-btn::after,
+.nav-btn-outline::after {
+  display: none !important;
+}
+
+/* MOBILE RESPONSIVE NAV */
+@media (max-width: 768px) {
+  .nav-left .nav-link,
+  .nav-right {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--color-dark);
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: #efe5d7;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+}

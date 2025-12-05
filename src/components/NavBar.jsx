@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./styles/NavBar.css";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -13,49 +14,51 @@ export default function NavBar() {
   };
 
   return (
-    <nav
-      style={{
-        padding: "12px 20px",
-        background: "#f5f5f5",
-        borderBottom: "1px solid #ddd",
-        marginBottom: "20px",
-        display: "flex",
-        alignItems: "center",
-        gap: "16px",
-      }}
-    >
-      {/* PUBLIC LINKS */}
-      <Link to="/">Home</Link>
+    <nav className="nav-container">
+      <div className="nav-left">
+        <span className="nav-logo">🦉 ReadOwl</span>
 
-      {/* ADMIN LINKS */}
-      {role === "admin" && (
-        <>
-          <Link to="/admin/dashboard">Admin Dashboard</Link>
-          <Link to="/admin/upload">Upload Ebook</Link>
-          <Link to="/admin/sales">Sales Dashboard</Link>
-        </>
-      )}
-
-      {/* LIBRARY LINK */}
-      {token && role === "user" && (
-        <Link to="/library" style={{ marginLeft: 10 }}>
-          My Library
+        <Link className="nav-link" to="/">
+          Home
         </Link>
-      )}
 
-      {/* AUTH LINKS */}
-      {!token ? (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/signup" style={{ marginLeft: 10 }}>
-            Sign Up
+        {role === "admin" && (
+          <>
+            <Link className="nav-link" to="/admin/dashboard">
+              Dashboard
+            </Link>
+            <Link className="nav-link" to="/admin/upload">
+              Upload
+            </Link>
+            <Link className="nav-link" to="/admin/sales">
+              Sales
+            </Link>
+          </>
+        )}
+
+        {token && role === "user" && (
+          <Link className="nav-link" to="/library">
+            My Library
           </Link>
-        </>
-      ) : (
-        <button onClick={logout} style={{ marginLeft: "auto" }}>
-          Logout
-        </button>
-      )}
+        )}
+      </div>
+
+      <div className="nav-right">
+        {!token ? (
+          <>
+            <Link className="nav-btn-outline" to="/login">
+              Login
+            </Link>
+            <Link className="nav-btn" to="/signup">
+              Sign Up
+            </Link>
+          </>
+        ) : (
+          <button className="nav-btn" onClick={logout}>
+            Logout
+          </button>
+        )}
+      </div>
     </nav>
   );
 }
