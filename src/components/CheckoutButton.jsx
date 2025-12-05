@@ -1,7 +1,7 @@
 import React from "react";
 import API from "../services/api";
 
-export default function CheckoutButton({ ebook }) {
+export default function CheckoutButton({ ebook, onSuccess }) {
   const startPayment = async () => {
     try {
       const res = await API.post("/orders/create", {
@@ -24,7 +24,8 @@ export default function CheckoutButton({ ebook }) {
             razorpay_signature: response.razorpay_signature,
             orderId,
           });
-          alert("Payment successful! You can now download your ebook.");
+
+          if (onSuccess) onSuccess();
         },
       };
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function EbookList() {
   const [ebooks, setEbooks] = useState([]);
+  const role = localStorage.getItem("role");
 
   useEffect(() => {
     try {
@@ -21,7 +22,7 @@ export default function EbookList() {
         <div key={book._id} style={{ marginBottom: 20 }}>
           {book.coverUrl && <img src={book.coverUrl} height={120} />}
           <h3>{book.title}</h3>
-          <p>₹{book.price}</p>
+          {role === "user" && <p>₹{book.price}</p>}
           <Link to={`/ebook/${book._id}`}>View Details</Link>
         </div>
       ))}

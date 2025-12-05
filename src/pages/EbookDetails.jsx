@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import API from "../services/api";
 import CheckoutButton from "../components/CheckoutButton";
@@ -6,22 +6,57 @@ import CheckoutButton from "../components/CheckoutButton";
 export default function EbookDetails() {
   const { id } = useParams();
   const [ebook, setEbook] = useState(null);
-  const [downloadUrl, setDownloadUrl] = useState(null);
+  const [purchased, setPurchased] = useState(false);
+  const [checking, setChecking] = useState(true);
+  const role = localStorage.getItem("role");
+
+  const checkPurchaseStatus = useCallback(async () => {
+    try {
+      const res = await API.get(`/ebooks/${id}/status`);
+      setPurchased(res.data.purchased);
+    } catch (err) {
+      setPurchased(false);
+      console.log(err);
+    }
+    setChecking(false);
+  }, [id]);
 
   useEffect(() => {
-    try {
-      API.get(`/ebooks/${id}`).then((res) => setEbook(res.data));
-    } catch (error) {
-      console.log(error);
-    }
-  }, [id]);
+    (async () => {
+      try {
+        const book = await API.get(`/ebooks/${id}`);
+        setEbook(book.data);
+      } catch (err) {
+        console.log(err);
+      }
+
+      await checkPurchaseStatus();
+    })();
+  }, [id, checkPurchaseStatus]);
 
   const getDownload = async () => {
     try {
       const res = await API.get(`/ebooks/${id}/download`);
-      setDownloadUrl(res.data.url);
+      const downloadUrl = res.data.url;
+
+      // Fetch the file as a Blob
+      const response = await fetch(downloadUrl);
+      const blob = await response.blob();
+
+      // Create a temporary download link with correct filename
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${ebook.title}.pdf`; // <-- correct filename
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      a.remove();
+      window.URL.revokeObjectURL(url);
     } catch (err) {
-      alert("You haven't purchased this book.", err);
+      alert("You haven't purchased this book.");
+      console.error(err);
     }
   };
 
@@ -34,17 +69,13 @@ export default function EbookDetails() {
       <p>{ebook.description}</p>
       <p>Price: ₹{ebook.price}</p>
 
-      <CheckoutButton ebook={ebook} />
-
-      <button onClick={getDownload}>Download (if purchased)</button>
-
-      {downloadUrl && (
-        <div>
-          <a href={downloadUrl} target="_blank">
-            Download PDF
-          </a>
-        </div>
-      )}
+      {checking ? (
+        <p>Checking purchase status...</p>
+      ) : purchased ? (
+        <button onClick={getDownload}>Download Ebook</button>
+      ) : role === "user" ? (
+        <CheckoutButton ebook={ebook} onSuccess={checkPurchaseStatus} />
+      ) : null}
     </div>
   );
 }

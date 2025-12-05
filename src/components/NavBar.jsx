@@ -32,7 +32,15 @@ export default function NavBar() {
         <>
           <Link to="/admin/dashboard">Admin Dashboard</Link>
           <Link to="/admin/upload">Upload Ebook</Link>
+          <Link to="/admin/sales">Sales Dashboard</Link>
         </>
+      )}
+
+      {/* LIBRARY LINK */}
+      {token && role === "user" && (
+        <Link to="/library" style={{ marginLeft: 10 }}>
+          My Library
+        </Link>
       )}
 
       {/* AUTH LINKS */}

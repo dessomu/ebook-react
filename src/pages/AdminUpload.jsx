@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../services/api";
+import useDebounce from "../hooks/useDebounce";
 
 export default function AdminUpload() {
   const [pdf, setPdf] = useState(null);
@@ -9,11 +10,16 @@ export default function AdminUpload() {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [productId, setProductId] = useState("");
+
+  const debouncedProductId = useDebounce(productId, 500);
 
   const handleUpload = async () => {
     if (!pdf || !title || !price) {
       return setMessage("PDF, title, and price are required!");
     }
+
+    const normalizedId = productId.toLowerCase().replace(/\s+/g, "-").trim();
 
     const form = new FormData();
     form.append("pdf", pdf);
@@ -21,6 +27,7 @@ export default function AdminUpload() {
     form.append("title", title);
     form.append("price", price);
     form.append("description", description);
+    form.append("productId", normalizedId);
 
     setLoading(true);
     try {
@@ -30,12 +37,32 @@ export default function AdminUpload() {
 
       setMessage("Uploaded successfully!");
       console.log(res.data);
+      setCover(null);
+      setPdf(null);
+      setDescription("");
+      setPrice("");
+      setTitle("");
     } catch (err) {
       setMessage("Upload failed");
       console.error(err);
     }
     setLoading(false);
   };
+
+  const checkProductId = async (productId) => {
+    const res = await API.get(`/admin/check-product-id/${productId}`);
+    if (res.data.exists) {
+      alert(
+        "This productId is already used. Reuse it only if reuploading same ebook."
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (debouncedProductId.trim().length > 0) {
+      checkProductId(debouncedProductId);
+    }
+  }, [debouncedProductId]);
 
   return (
     <div style={{ maxWidth: 600, margin: "40px auto" }}>
@@ -49,6 +76,17 @@ export default function AdminUpload() {
         type="number"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+      />
+
+      <label>Product Id</label>
+      <input
+        type="text"
+        placeholder="productId"
+        value={productId}
+        onBlur={() => checkProductId(productId)}
+        onChange={(e) => {
+          setProductId(e.target.value);
+        }}
       />
 
       <label>Description</label>

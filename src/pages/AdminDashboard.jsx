@@ -67,7 +67,7 @@ export default function AdminDashboard() {
               Delete
             </button>
 
-            <Link to={`/admin/upload?id=${book._id}`}>
+            <Link to={`/admin/ebook/${book._id}/edit`}>
               <button>Edit</button>
             </Link>
           </div>
