@@ -13,11 +13,27 @@
 
 /* logo */
 .nav-logo {
-  font-family: "Playfair Display", serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--color-cream);
   text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0;
+}
+
+.owl {
+  background: linear-gradient(180deg, #ff8c00 0%, #ff6600 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reads {
+  background: linear-gradient(180deg, #ffd4a3 0%, #ffb380 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* nav links container */

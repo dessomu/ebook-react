@@ -19,7 +19,9 @@ export default function NavBar() {
       {/* Left section */}
       <div className="nav-left">
         <Link to="/" className="nav-logo">
-          🦉 ReadOwl
+          🦉 <span class="owl">owl</span>
+          {""}
+          <span class="reads">reads</span>
         </Link>
       </div>
 
