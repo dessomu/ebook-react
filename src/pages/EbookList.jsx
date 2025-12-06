@@ -23,7 +23,7 @@ export default function EbookList() {
       ) : (
         <div className="ebook-container">
           <div className="ebook-grid">
-            {!ebooks && <h1>No ebooks uploaded yet..</h1>}
+            {ebooks.length == 0 && <h1>No ebooks uploaded yet..</h1>}
             {ebooks.map((book) => (
               <div className="ebook-card" key={book._id}>
                 {book.coverUrl && (
