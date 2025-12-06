@@ -34,6 +34,7 @@ export default function EbookList() {
                 )}
 
                 <h3 className="ebook-title">{book.title}</h3>
+                <br />
 
                 {role === "user" && (
                   <p className="ebook-price">₹{book.price}</p>
