@@ -68,6 +68,7 @@ export default function AdminUpload() {
   return (
     <div className="upload-container">
       <div className="upload-card">
+        <h2 className="upload-title"> Upload New Ebook</h2>
         <div className="upload-grid">
           <div>
             <label className="upload-label">Title</label>

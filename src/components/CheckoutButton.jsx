@@ -37,5 +37,9 @@ export default function CheckoutButton({ ebook, onSuccess }) {
     }
   };
 
-  return <button onClick={startPayment}>Buy Now for ₹{ebook.price}</button>;
+  return (
+    <button onClick={startPayment} className="checkout-btn">
+      Buy Now for ₹{ebook.price}
+    </button>
+  );
 }

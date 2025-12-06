@@ -17,21 +17,55 @@ export default function SalesDashboard() {
     API.get("/admin/sales/overview").then((res) => setStats(res.data));
   }, []);
 
+  console.log(stats);
+
   if (!stats) return <p>Loading...</p>;
 
+  const pieData =
+    stats.byProduct?.map((p) => ({
+      name: p._id,
+      value: p.sales,
+    })) || [];
+
+  const COLORS = ["#6E473B", "#A78D78", "#3E2723", "#BEB5A9", "#291C0E"];
+
   return (
-    <div style={{ maxWidth: "700px", margin: "20px auto" }}>
-      <h2>📊 Sales Dashboard</h2>
+    <div className="sales-container">
+      <h2 className="sales-title"> Sales Dashboard</h2>
 
-      <h3>Total Sales: {stats.totalSales}</h3>
-      <h3>Total Revenue: ₹{stats.totalRevenue}</h3>
-
-      <h3>Sales By Product</h3>
-      {stats.byProduct.map((p) => (
-        <div key={p._id}>
-          <strong>{p._id}</strong>: {p.sales} sales
+      <div className="stats-row">
+        <div className="stat-card">
+          <h3 className="stat-number">{stats.totalSales}</h3>
+          <p className="stat-label">Total Sales</p>
         </div>
-      ))}
+
+        <div className="stat-card">
+          <h3 className="stat-number">₹{stats.totalRevenue}</h3>
+          <p className="stat-label">Total Revenue</p>
+        </div>
+      </div>
+
+      <h3 className="chart-title">Sales by Product</h3>
+
+      <div className="chart-box">
+        <ResponsiveContainer width="100%" height={350}>
+          <PieChart>
+            <Pie
+              data={pieData}
+              dataKey="value"
+              nameKey="name"
+              outerRadius={130}
+              label
+            >
+              {pieData.map((_, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

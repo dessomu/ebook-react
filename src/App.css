@@ -22,6 +22,7 @@ body {
   font-family: "Inter", sans-serif;
   color: var(--text-primary);
   height: 100vh;
+  min-height: max-content;
 }
 
 h1,
@@ -33,4 +34,34 @@ h2 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #b07f5e, #8a5a3f, #d1b59a);
+  background-size: 200% 200%;
+  transition: 0.4s ease;
+  box-shadow: 0 0 14px rgba(139, 92, 51, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 18px;
+}
+
+/* Gradient glow hover effect */
+.checkout-btn:hover {
+  background-position: 100% 0;
+  box-shadow: 0 0 22px rgba(139, 92, 51, 0.7), 0 0 36px rgba(209, 181, 154, 0.6);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Press animation */
+.checkout-btn:active {
+  transform: scale(0.97);
 }
