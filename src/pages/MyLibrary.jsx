@@ -49,7 +49,7 @@ export default function MyLibrary() {
   return (
     <div className="library-container">
       {items.length === 0 ? (
-        <p className="library-empty">You haven’t purchased any ebooks yet.</p>
+        <h2 className="library-empty">You haven’t purchased any ebooks yet.</h2>
       ) : items.every((p) => p.deleted) ? (
         <p className="library-empty">
           Your library is empty. All ebooks you purchased were removed by admin.
