@@ -150,16 +150,61 @@
 
 @media (max-width: 480px) {
   .details-container {
-    padding: 30px 20px;
+    padding: 20px 16px; /* Tighter container */
   }
+
   .details-wrapper {
-    padding: 24px;
+    padding: 24px 20px;
+    gap: 24px; /* Reduced gap */
     align-items: center;
+    border: none;
+    box-shadow: none; /* Cleaner look on mobile */
+    background: transparent;
   }
+
+  /* Compact Image */
+  .cover-section {
+    max-width: 180px; /* Restrict width */
+  }
+
   .details-cover {
-    height: 380px;
+    height: 260px; /* Much shorter */
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   }
+
+  /* Elegant Typography */
   .details-title {
-    font-size: 28px;
+    font-size: 22px; /* Significantly smaller */
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .details-description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #555; /* Slightly lighter for elegance */
+  }
+
+  .details-price {
+    font-size: 20px;
+    margin-bottom: 16px; /* Reduced margin to bring button closer */
+  }
+
+  /* Shared button styles for mobile consistency */
+  .details-btn,
+  .checkout-btn {
+    padding: 12px 28px; /* Compact button */
+    font-size: 14px;
+    width: 100%; /* Full width for easy tapping */
+    border-radius: 50px; /* Pill shape looks more modern/app-like on mobile */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-top: 0; /* Override global margin to reduce gap */
+    /* Background color preserved by not overriding it or assuming inherited/global */
   }
 }
