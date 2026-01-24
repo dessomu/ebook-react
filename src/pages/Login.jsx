@@ -6,6 +6,7 @@ import "./styles/Login.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -22,9 +23,27 @@ export default function Login() {
 
       navigate("/");
     } catch (err) {
-      alert("Invalid credentials", err);
+      const errorMsg =
+        err.response?.data?.message || "Invalid credentials. Please try again.";
+
+      const newErrors = {};
+
+      if (errorMsg.toLowerCase().includes("wrong password")) {
+        newErrors.password = "Incorrect password.";
+        setPassword("");
+      } else if (errorMsg.toLowerCase().includes("user does not exist")) {
+        newErrors.email = "No account found with this email.";
+        setEmail("");
+        setPassword("");
+      } else {
+        newErrors.password = errorMsg;
+      }
+
+      setErrors(newErrors);
     }
   };
+
+  const isValid = email.length > 0 && password.length > 0;
 
   return (
     <div className="auth-wrapper">
@@ -36,20 +55,30 @@ export default function Login() {
           type="email"
           className="auth-input"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setErrors({ ...errors, email: "" });
+          }}
           placeholder="you@example.com"
         />
+        {errors.email && <span className="field-error">{errors.email}</span>}
 
         <label className="auth-label">Password</label>
         <input
           type="password"
           className="auth-input"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setErrors({ ...errors, password: "" });
+          }}
           placeholder="********"
         />
+        {errors.password && (
+          <span className="field-error">{errors.password}</span>
+        )}
 
-        <button className="auth-btn" onClick={handleLogin}>
+        <button className="auth-btn" onClick={handleLogin} disabled={!isValid}>
           Login
         </button>
       </div>
