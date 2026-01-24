@@ -6,9 +6,23 @@
   --color-cream: #e1d4c2;
 
   --text-primary: #291c0e; /* deep dark */
-  --text-secondary: #6e473b;
-  --radius: 14px;
-  --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --text-secondary: #6e473b; /* warmer brown for secondary */
+  --text-muted: #8c7b70; /* new muted text */
+
+  --radius: 12px; /* slightly tighter than 14px */
+  --radius-sm: 6px;
+
+  /* Layered, realistic shadows using the dark brown tone for warmth */
+  --shadow-soft:
+    0 2px 4px rgba(41, 28, 14, 0.05), 0 12px 28px rgba(41, 28, 14, 0.08);
+
+  --shadow-hover:
+    0 4px 8px rgba(41, 28, 14, 0.06), 0 16px 32px rgba(41, 28, 14, 0.12);
+
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
@@ -19,49 +33,54 @@
 
 body {
   background: linear-gradient(180deg, #dbd5cc 0%, #ece0d0 100%);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   color: var(--text-primary);
   height: 100vh;
   min-height: max-content;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 h1,
-h2 {
-  font-family: "Playfair Display", serif;
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 0 24px;
 }
 
+/* Common Button Styles */
 .checkout-btn {
   width: 100%;
-  padding: 14px 26px;
+  padding: 16px 32px;
   border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 700;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
   color: #fff;
   cursor: pointer;
-  background: linear-gradient(135deg, #b07f5e, #8a5a3f, #d1b59a);
-  background-size: 200% 200%;
-  transition: 0.4s ease;
-  box-shadow: 0 0 14px rgba(139, 92, 51, 0.45);
+  background: linear-gradient(135deg, #b07f5e, #8a5a3f);
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(138, 90, 63, 0.2);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 18px;
+  letter-spacing: 0.08em;
+  margin-top: 24px;
 }
 
-/* Gradient glow hover effect */
 .checkout-btn:hover {
-  background-position: 100% 0;
-  box-shadow: 0 0 22px rgba(139, 92, 51, 0.7), 0 0 36px rgba(209, 181, 154, 0.6);
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(138, 90, 63, 0.3);
+  filter: brightness(1.05);
 }
 
-/* Press animation */
 .checkout-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }

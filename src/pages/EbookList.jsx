@@ -36,16 +36,15 @@ export default function EbookList() {
                   />
                 )}
 
-                <h3 className="ebook-title">{book.title}</h3>
-                <br />
-
-                {role === "user" && (
-                  <p className="ebook-price">₹{book.price}</p>
-                )}
-
-                <Link className="view-btn" to={`/ebook/${book._id}`}>
-                  View Details →
-                </Link>
+                <div className="ebook-content-wrapper">
+                  <h3 className="ebook-title">{book.title}</h3>
+                  {role === "user" && (
+                    <p className="ebook-price">₹{book.price}</p>
+                  )}
+                  <Link className="view-btn" to={`/ebook/${book._id}`}>
+                    <span className="btn-text-full">Discover Now</span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

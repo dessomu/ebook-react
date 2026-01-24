@@ -48,13 +48,13 @@ export default function SalesDashboard() {
       <h3 className="chart-title">Sales by Product</h3>
 
       <div className="chart-box">
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={pieData}
               dataKey="value"
               nameKey="name"
-              outerRadius={130}
+              outerRadius="70%"
               label
             >
               {pieData.map((_, index) => (
@@ -62,7 +62,12 @@ export default function SalesDashboard() {
               ))}
             </Pie>
             <Tooltip />
-            <Legend />
+            <Legend
+              layout="horizontal"
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{ paddingTop: "20px" }}
+            />
           </PieChart>
         </ResponsiveContainer>
       </div>

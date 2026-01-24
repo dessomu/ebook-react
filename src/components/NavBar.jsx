@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/NavBar.css";
 
@@ -8,14 +8,29 @@ export default function NavBar() {
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
 
+  const navRef = useRef(null);
+
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     navigate("/login");
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <nav className="nav-container">
+    <nav className="nav-container" ref={navRef}>
       {/* Left section */}
       <div className="nav-left">
         <Link to="/" className="nav-logo">
