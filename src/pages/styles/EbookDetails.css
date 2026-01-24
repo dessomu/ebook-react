@@ -119,6 +119,7 @@
     flex-direction: column;
     padding: 40px;
     gap: 40px;
+    align-items: center;
   }
 
   .cover-section {
@@ -153,6 +154,7 @@
   }
   .details-wrapper {
     padding: 24px;
+    align-items: center;
   }
   .details-cover {
     height: 380px;

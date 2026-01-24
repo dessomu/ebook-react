@@ -78,6 +78,7 @@
   width: 100%;
   flex: 1; /* Take up remaining space */
   margin-bottom: 16px;
+  gap: 12px; /* Added consistent spacing */
 }
 
 /* Title & price */
@@ -96,7 +97,7 @@
   font-weight: 500;
   color: var(--text-secondary);
   font-family: var(--font-body);
-  margin: 4px 0 10px;
+  margin: 0; /* Let gap handle spacing */
 }
 
 /* Button */
@@ -171,33 +172,25 @@
   }
 
   .view-btn {
-    padding: 0;
+    padding: 8px 16px;
     margin: 0;
-    width: auto;
-    background: transparent;
-    border: none;
-    color: var(--color-brown);
-    font-size: 13px;
-    font-weight: 700;
+    width: fit-content;
+    background: var(--color-brown);
+    border: 1px solid var(--color-brown);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     align-self: flex-start;
-    margin-top: 12px;
-    /* Underline effect */
-    border-bottom: 1.5px solid var(--color-tan);
-    border-radius: 0;
+    border-radius: 50px; /* Capsule shape for premium feel */
+    box-shadow: 0 4px 10px rgba(138, 90, 63, 0.2);
   }
 
   .view-btn:hover {
-    border-color: var(--color-brown);
-    background: transparent;
-    color: var(--color-dark);
-    transform: none;
-  }
-  .btn-text-mobile {
-    display: inline;
-  }
-  .btn-text-full {
-    display: none;
+    background: #fff;
+    color: var(--color-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(138, 90, 63, 0.3);
   }
 }

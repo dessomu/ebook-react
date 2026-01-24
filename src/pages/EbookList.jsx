@@ -41,12 +41,11 @@ export default function EbookList() {
                   {role === "user" && (
                     <p className="ebook-price">₹{book.price}</p>
                   )}
+                  <Link className="view-btn" to={`/ebook/${book._id}`}>
+                    <span className="btn-text-full">Discover Now</span>
+                    <span className="btn-text-mobile">Discover</span>
+                  </Link>
                 </div>
-
-                <Link className="view-btn" to={`/ebook/${book._id}`}>
-                  <span className="btn-text-full">View Details →</span>
-                  <span className="btn-text-mobile">Details</span>
-                </Link>
               </div>
             ))}
           </div>
