@@ -101,6 +101,26 @@
   text-align: left;
 }
 
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.auth-link {
+  color: #2c1810;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: opacity 0.2s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
 /* Responsive improvements */
 @media (max-width: 480px) {
   .auth-card {
@@ -118,5 +138,20 @@
     padding: 12px;
     font-size: 14px;
     margin-top: 24px;
+  }
+  .auth-footer {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+  .auth-link {
+    color: #2c1810;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: opacity 0.2s;
+  }
+  .auth-link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
   }
 }
