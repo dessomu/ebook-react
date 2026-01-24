@@ -141,7 +141,7 @@
 /* ---------------- MOBILE ---------------- */
 @media (max-width: 768px) {
   .nav-container {
-    padding: 12px 20px; /* Tighter container padding */
+    padding: 15px 20px; /* Tighter container padding */
   }
 
   .nav-hamburger {
@@ -195,5 +195,11 @@
 
   .mobile-full {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 12px 20px; /* Tighter container padding */
   }
 }

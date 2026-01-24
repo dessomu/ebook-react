@@ -43,7 +43,6 @@ export default function EbookList() {
                   )}
                   <Link className="view-btn" to={`/ebook/${book._id}`}>
                     <span className="btn-text-full">Discover Now</span>
-                    <span className="btn-text-mobile">Discover</span>
                   </Link>
                 </div>
               </div>

@@ -155,33 +155,75 @@
 }
 
 /* ===================== MOBILE ===================== */
+/* ===================== MOBILE ===================== */
 @media (max-width: 600px) {
   .about-container {
-    padding: 40px 24px;
-    gap: 32px;
+    padding: 30px 24px;
+    gap: 24px;
+    min-height: calc(100vh - 60px);
+    justify-content: center;
+    flex-direction: column; /* Ensure logical order top-to-bottom */
   }
 
+  .about-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Image Section */
+  .about-right {
+    margin-bottom: 0;
+    order: -1; /* Move to top since direction is column */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .about-book-image {
+    max-width: 200px; /* Larger image */
+    max-height: 260px;
+    box-shadow: 0 12px 24px rgba(41, 28, 14, 0.12); /* Elegant shadow */
+  }
+
+  /* Typography */
   .about-title {
-    font-size: 36px;
+    font-size: 28px; /* Refined compact size */
+    margin-bottom: 12px;
+    line-height: 1.2;
+    margin-top: 10px;
   }
 
   .about-sub {
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 100%;
   }
 
+  /* Actions */
   .about-actions {
-    flex-direction: column;
+    flex-direction: column; /* Stack vertically */
     gap: 12px;
+    width: 100%;
+    max-width: 300px; /* Constrain width for elegance */
   }
 
   .about-btn-primary,
   .about-btn-outline {
     width: 100%;
-    padding: 14px 20px;
+    padding: 12px 20px; /* Reduced padding from 14px */
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.05em;
   }
 
-  .about-book-image {
-    max-width: 240px; /* Significantly smaller on mobile */
-    max-height: 320px;
+  .social-icons {
+    margin-top: 20px;
+    gap: 24px;
+    font-size: 20px;
+    justify-content: center;
   }
 }
