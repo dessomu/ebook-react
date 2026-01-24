@@ -158,7 +158,7 @@
     padding: 0 20px; /* Reset padding initially */
     flex-direction: column;
     align-items: center;
-    gap: 12px; /* Reduced gap */
+    gap: 8px; /* Further reduced gap (was 12px) for tighter polish */
 
     /* Animation props */
     max-height: 0;
@@ -179,11 +179,11 @@
   }
 
   .nav-link {
-    font-size: 15px; /* Smaller font */
+    font-size: 14px; /* Reduced from 15px for a calmer look */
     color: var(--color-cream);
     width: 100%;
     text-align: center;
-    padding: 8px; /* Tighter padding */
+    padding: 6px 8px; /* Tighter padding */
   }
 
   .nav-link:hover {
@@ -194,10 +194,10 @@
   .nav-btn,
   .nav-btn-outline {
     width: 100%;
-    max-width: 240px; /* Max width constraint */
-    height: 38px; /* Compact height */
-    padding: 0; /* Remove extra padding since fixed height */
-    font-size: 14px;
+    max-width: 220px; /* Slightly narrower constraint (was 240px) */
+    height: 34px; /* Reduced height (was 38px) */
+    padding: 0;
+    font-size: 13px; /* Smaller button text (was 14px) */
     display: flex; /* Ensure flex for centering */
     align-items: center;
     justify-content: center;
@@ -211,5 +211,9 @@
 @media (max-width: 480px) {
   .nav-container {
     padding: 12px 20px; /* Tighter container padding */
+  }
+
+  .mobile-full {
+    max-height: 30px !important;
   }
 }
