@@ -2,17 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/NavBar.css";
 
+import API from "../services/api";
+
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
-  const token = localStorage.getItem("token");
 
   const navRef = useRef(null);
 
-  const logout = () => {
-    localStorage.removeItem("token");
+  const logout = async () => {
+    try {
+      const res = await API.post("/auth/logout");
+      console.log(res);
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
     localStorage.removeItem("role");
+    localStorage.removeItem("name");
     navigate("/login");
   };
 
@@ -77,7 +84,7 @@ export default function NavBar() {
           </>
         )}
 
-        {token && role === "user" && (
+        {role === "user" && (
           <Link
             className="nav-link"
             to="/library"
@@ -88,7 +95,7 @@ export default function NavBar() {
         )}
 
         {/* AUTH BUTTONS */}
-        {!token ? (
+        {!role ? (
           <>
             <Link
               className="nav-btn-outline mobile-full"

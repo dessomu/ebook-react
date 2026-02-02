@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { setAuthToken } from "./services/api";
+
 import "./App.css";
 
 import Login from "./pages/Login";
@@ -20,11 +20,6 @@ import EditEbook from "./pages/Admin/EditEbook";
 import SalesDashboard from "./pages/Admin/SalesDashboard";
 
 export default function App() {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) setAuthToken(token);
-  }, []);
-
   return (
     <>
       <NavBar />

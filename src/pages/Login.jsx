@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import API, { setAuthToken } from "../services/api";
-import { useNavigate, Link } from "react-router-dom";
+import API from "../services/api";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import "./styles/Login.css";
 
 export default function Login() {
@@ -8,6 +8,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const location = useLocation();
+  const message = location.state?.message;
 
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
@@ -43,13 +45,11 @@ export default function Login() {
     try {
       const res = await API.post("/auth/login", { email, password });
 
-      const { token, user } = res.data;
+      const { user } = res.data;
+      console.log(res.data);
 
-      localStorage.setItem("token", token);
       localStorage.setItem("role", user.role);
       localStorage.setItem("name", user.name);
-
-      setAuthToken(token);
 
       navigate("/");
     } catch (err) {
@@ -130,6 +130,8 @@ export default function Login() {
             Sign up
           </Link>
         </p>
+
+        {message && <p className="success-message">{message}</p>}
       </div>
     </div>
   );
