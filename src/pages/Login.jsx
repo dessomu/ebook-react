@@ -8,8 +8,9 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
   const location = useLocation();
-  const message = location.state?.message;
+  const [message, setMessage] = useState(location.state?.message);
 
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
@@ -95,6 +96,7 @@ export default function Login() {
             const newErrors = { ...errors };
             delete newErrors.email;
             setErrors(newErrors);
+            setMessage(null);
           }}
           onBlur={() => handleBlur("email")}
           placeholder="you@example.com"
