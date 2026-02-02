@@ -16,10 +16,6 @@ export default function Login() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  // Removed validatePassword function or leave it if reused, but here we were only using it for Login validation which we are removing.
-  // We can keep it if we want to check format but user said "do not introduce client side check".
-  // So I will remove it to keep code clean.
-
   const handleBlur = (field) => {
     const newErrors = { ...errors };
     if (field === "email") {
@@ -29,18 +25,14 @@ export default function Login() {
         delete newErrors.email;
       }
     }
-    // Password check removed for Login as requested
     setErrors(newErrors);
   };
 
   const handleLogin = async () => {
-    // Client-side validation before submit
     const newErrors = {};
     if (!validateEmail(email))
       newErrors.email = "Please check the email format.";
-    // Removed password complexity check
 
-    // Check if password is empty just to be safe, though button is disabled if empty
     if (!password) newErrors.password = "Password is required.";
 
     if (Object.keys(newErrors).length > 0) {

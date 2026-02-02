@@ -44,7 +44,7 @@ export default function MyLibrary() {
     fetchLibrary();
   }, []);
 
-  if (loading) return <p className="library-loading">Loading library...</p>;
+  if (loading) return <h2 className="library-loading">Loading library...</h2>;
 
   return (
     <div className="library-container">
