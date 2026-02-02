@@ -22,7 +22,10 @@
   gap: 40px;
   justify-items: center;
 }
-
+.ebook-grid h1 {
+  text-align: center;
+  font-size: large;
+}
 /* Card */
 .ebook-card {
   width: 100%;
@@ -43,9 +46,7 @@
 
 .ebook-card:hover {
   transform: translateY(-8px);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.05),
-    0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 20px 40px rgba(0, 0, 0, 0.08);
   border-color: transparent;
 }
 
@@ -57,17 +58,13 @@
   border-radius: 4px 8px 8px 4px;
   position: relative;
   transition: transform 0.4s ease;
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.1),
-    0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
 .ebook-card:hover .ebook-cover {
   transform: scale(1.02);
-  box-shadow:
-    0 8px 16px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
 /* Wrapper for text content to push button down together */
@@ -137,6 +134,9 @@
   .ebook-grid {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
     gap: 24px;
+  }
+  .ebook-grid h1 {
+    font-size: medium;
   }
   .ebook-card {
     max-width: 100%;
