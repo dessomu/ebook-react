@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API, { setAuthToken } from "../services/api";
+import API from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
 import "./styles/SignUp.css";
 
@@ -62,8 +62,9 @@ export default function Signup() {
       });
       console.log(res);
 
-      alert("Account created! Please log in.");
-      navigate("/login");
+      navigate("/login", {
+        state: { message: "Account created successfully! Please login." },
+      });
     } catch (err) {
       const errorMsg =
         err.response?.data?.message || "Signup failed. Try again.";

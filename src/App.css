@@ -9,7 +9,7 @@
   --text-secondary: #6e473b; /* warmer brown for secondary */
   --text-muted: #8c7b70; /* new muted text */
 
-  --radius: 12px; /* slightly tighter than 14px */
+  --radius: 12px;
   --radius-sm: 6px;
 
   /* Layered, realistic shadows using the dark brown tone for warmth */

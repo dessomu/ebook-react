@@ -121,6 +121,18 @@
   opacity: 0.8;
 }
 
+.success-message {
+  margin-top: 12px;
+  background: #d4edda;
+  color: #155724;
+  padding: 8.5px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  border: 1px solid #c3e6cb;
+}
+
 @media (max-width: 480px) {
   .auth-card {
     padding: 24px 20px; /* Even more compact on mobile */
