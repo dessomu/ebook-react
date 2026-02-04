@@ -32,7 +32,7 @@ export default function AdminDashboard() {
     fetchEbooks();
   }, []);
 
-  if (loading) return <div>Loading dashboard...</div>;
+  if (loading) return <h3 className="library-loading">Loading dashboard...</h3>;
 
   return (
     <div className="admin-container">

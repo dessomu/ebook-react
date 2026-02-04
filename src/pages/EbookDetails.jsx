@@ -61,7 +61,7 @@ export default function EbookDetails() {
     }
   };
 
-  if (!ebook) return <div>Loading...</div>;
+  if (!ebook) return <h3 className="library-loading">Loading...</h3>;
 
   return (
     <div className="details-container">
